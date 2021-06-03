@@ -3,19 +3,16 @@ pipeline{
 	stages{
 		stage("Pull Latest Image"){
 			steps{
-				//sh 
 				bat "docker pull vivek1334/selenium-docker"
 			}
 		}
 		stage("Start Grid"){
 			steps{
-				//sh 
 				bat "docker-compose up -d hub chrome firefox"
 			}
 		}
 		stage("Run Test"){
 			steps{
-				//sh 
 				bat "docker-compose up search-module book-flight-module"
 			}
 		}
@@ -23,9 +20,7 @@ pipeline{
 	post{
 		always{
 			archiveArtifacts artifacts: 'output/**'
-			//sh 
-			bat "docker-compose down"
-			//sh 
+			bat "docker-compose down" 
 			bat "sudo rm -rf output/"
 		}
 	}
